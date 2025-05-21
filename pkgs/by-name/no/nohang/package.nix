@@ -1,6 +1,7 @@
 {
   lib,
   stdenv,
+  nixosTests,
   fetchFromGitHub,
   python3,
   sudo,
@@ -39,6 +40,10 @@ stdenv.mkDerivation (finalAttrs: {
 
     runHook postInstall
   '';
+
+  passthru.tests = {
+    inherit (nixosTests) nohang;
+  };
 
   meta = {
     homepage = "https://github.com/hakavlad/nohang";
